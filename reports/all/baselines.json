@@ -1,0 +1,83 @@
+{
+  "Muhammad_Ayyoub_128kbps": {
+    "snr_db": 11.78885450295532,
+    "spectral_flatness": 0.018897567875683308,
+    "silence_ratio": 0.013098237145178177,
+    "clipping_fraction": 0.0,
+    "dc_offset": -0.0009202441724482924,
+    "rms_dbfs": -16.164386240804667,
+    "_n": 6236
+  },
+  "Yaser_Salamah_128kbps": {
+    "snr_db": 12.424787137868933,
+    "spectral_flatness": 0.0017289791139774024,
+    "silence_ratio": 0.016619144713148824,
+    "clipping_fraction": 0.0,
+    "dc_offset": -0.001001459953840822,
+    "rms_dbfs": -17.393514154433397,
+    "_n": 6236
+  },
+  "Husary_128kbps": {
+    "snr_db": 30.460590654887355,
+    "spectral_flatness": 0.00484453933313489,
+    "silence_ratio": 0.08007856543234676,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.0005146308103576303,
+    "rms_dbfs": -20.46588058062226,
+    "_n": 6236
+  },
+  "Abdullah_Basfar_192kbps": {
+    "snr_db": 19.904560214975675,
+    "spectral_flatness": 0.07604283094406128,
+    "silence_ratio": 0.04073448173751442,
+    "clipping_fraction": 0.0,
+    "dc_offset": 2.1789082538248294e-08,
+    "rms_dbfs": -21.30039881846877,
+    "_n": 6236
+  },
+  "aziz_alili_128kbps": {
+    "snr_db": 8.843935112793714,
+    "spectral_flatness": 0.03120768629014492,
+    "silence_ratio": 0.0046641791044776115,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.00016975862672552466,
+    "rms_dbfs": -13.63361331320203,
+    "_n": 6236
+  },
+  "Hudhaify_128kbps": {
+    "snr_db": 20.842864697141618,
+    "spectral_flatness": 0.00873375404626131,
+    "silence_ratio": 0.042523033309709427,
+    "clipping_fraction": 0.0,
+    "dc_offset": 1.6238318467642898e-09,
+    "rms_dbfs": -18.007204557366165,
+    "_n": 6236
+  },
+  "Abdul_Basit_Murattal_192kbps": {
+    "snr_db": 20.689261710349527,
+    "spectral_flatness": 0.019909829832613468,
+    "silence_ratio": 0.029411764705882353,
+    "clipping_fraction": 0.0,
+    "dc_offset": -2.1164189092814922e-05,
+    "rms_dbfs": -22.30384162735782,
+    "_n": 6236
+  },
+  "Abu_Bakr_Ash-Shaatree_128kbps": {
+    "snr_db": 8.993005973251098,
+    "spectral_flatness": 0.024685353972017765,
+    "silence_ratio": 0.004035771688409183,
+    "clipping_fraction": 0.0,
+    "dc_offset": -5.0176060540252365e-05,
+    "rms_dbfs": -21.042919230246692,
+    "_n": 6236
+  },
+  "Minshawy_Murattal_128kbps": {
+    "snr_db": 16.937738114298526,
+    "spectral_flatness": 0.014258235692977905,
+    "silence_ratio": 0.024106400665004156,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.00020757395395776257,
+    "rms_dbfs": -18.517605688756298,
+    "_n": 6236
+  }
+}

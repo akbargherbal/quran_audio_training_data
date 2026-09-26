@@ -14,6 +14,9 @@ venv/
 content/
 *.mp3
 
-# Generated full-run artifacts (keep the committed sample reports)
+# Generated full-run artifacts (keep summaries/baselines, not the per-file logs)
 /tmp/
 *.tmp
+reports/all/decisions.csv
+reports/all/decisions.jsonl
+reports/all_features.csv

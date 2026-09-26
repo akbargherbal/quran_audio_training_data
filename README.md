@@ -104,7 +104,7 @@ garbage, no speech, buried in noise, severe clipping). Anything borderline goes
 to a small `review` list for a human listen. This avoids the failure mode where a
 global band rejects an entire reciter for its recording style.
 
-## Results (prototype)
+## Results
 
 Two independent 405-file samples (45 random ayat + known anomalies × 9 reciters);
 sample 2 used baselines built only on sample 1:
@@ -114,8 +114,23 @@ sample 2 used baselines built only on sample 1:
 | Sample 1 | 386 (95.3%) | 10 (2.5%) | 9 (2.2%) |
 | Sample 2 (held-out) | 388 (95.8%) | 11 (2.7%) | 6 (1.5%) |
 
-Rejects are the genuinely bad files (11 kHz / 24 kbps Abu Bakr recordings and
-corrupt aziz files). See `reports/*/summary.md`.
+Full dataset (all 56,124 main files, per-reciter baselines built from the full
+feature set):
+
+| Decision | Count | Share |
+|---|---|---|
+| accept | 54,626 | 97.3% |
+| review | 1,130 | 2.0% |
+| reject | 368 | 0.7% |
+
+Rejects are the objectively bad files: 298 Abu Bakr 11 kHz / 24 kbps recordings
+(`low_sample_rate`), 60 aziz `over_range` garbage/corrupt decodes, 33 clipping and
+11 low-SNR outliers. Per-reciter breakdown and baselines: `reports/all/summary.md`
+and `reports/all/baselines.json`. See also `reports/*/summary.md`.
+
+The filtered set (54,626 accepted + 1,130 review, plus manifests) is uploaded to
+`gs://sheikh-fitzgerald-backup/ARABIC_DATA/Quran_Filtered_Audio_Data/`; rejected
+files are not uploaded.
 
 ## Quickstart
 
