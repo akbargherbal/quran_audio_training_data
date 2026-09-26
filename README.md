@@ -1,0 +1,99 @@
+# Quran Audio Training Data
+
+Tooling and specifications for building a clean, verse-by-verse Quran recitation
+dataset for training a model on correct Arabic articulation points (**makharij**).
+The guiding principle is *garbage in, garbage out*: remove objectively bad audio,
+but avoid false positives that throw away good recordings.
+
+## Pipeline
+
+1. **Text filtering** — `quran_ayah_filtering_specs.md`
+   Drops surah openers (muqatta'at), ayat shorter than 5 words, and excessive
+   exact-duplicate repetitions.
+2. **Audio quality audit** — `quran_text/audio_quality_audit_specs_v2_en.md`
+   Classifies every remaining recording as `accept` / `review` / `reject`.
+
+## Dataset
+
+`content/Quran_Audio_Data` (not committed) — 9 reciters × 6,236 ayat
+(56,124 main files) plus per-reciter `extras/` (bismillah and `000` surah
+openers, out of scope):
+
+```
+Husary_128kbps              Abdul_Basit_Murattal_192kbps
+Abu_Bakr_Ash-Shaatree_128kbps   Minshawy_Murattal_128kbps
+Hudhaify_128kbps            Muhammad_Ayyoub_128kbps
+Yaser_Salamah_128kbps       aziz_alili_128kbps
+Abdullah_Basfar_192kbps
+```
+
+## Repo layout
+
+```
+quran_ayah_filtering_specs.md            text-level exclusion rules
+quran_text/
+  quran-simple.txt                       verse text (surah|ayah|text)
+  audio_quality_audit_review.md          review of the first audio spec (why v1 was replaced)
+  audio_quality_audit_specs_v2_en.md     current audio quality spec
+scripts/audio_quality/
+  features.py                            per-file feature extraction
+  audit.py                               extract / decide CLI
+  make_sample.py                         balanced ayah x reciter sampler
+  README.md                              pipeline usage
+reports/                                 sample runs (features, decisions, baselines, summaries)
+```
+
+## Design in one paragraph
+
+Quality is judged **relative to the same reciter** (per-reciter medians for SNR,
+noise dominance, silence) and duration is judged **relative to the same ayah
+across reciters** — not by a single global threshold. Only unambiguous defects
+are auto-rejected (corrupt/unreadable, sub-16 kHz fidelity, over-range decoder
+garbage, no speech, buried in noise, severe clipping). Anything borderline goes
+to a small `review` list for a human listen. This avoids the failure mode where a
+global band rejects an entire reciter for its recording style.
+
+## Results (prototype)
+
+Two independent 405-file samples (45 random ayat + known anomalies × 9 reciters);
+sample 2 used baselines built only on sample 1:
+
+| Run | accept | review | reject |
+|---|---|---|---|
+| Sample 1 | 386 (95.3%) | 10 (2.5%) | 9 (2.2%) |
+| Sample 2 (held-out) | 388 (95.8%) | 11 (2.7%) | 6 (1.5%) |
+
+Rejects are the genuinely bad files (11 kHz / 24 kbps Abu Bakr recordings and
+corrupt aziz files). See `reports/*/summary.md`.
+
+## Quickstart
+
+```bash
+# build a balanced sample: <n random ayat> <seed>
+python3 scripts/audio_quality/make_sample.py 45 7
+
+# extract features (soundfile primary, ffmpeg fallback)
+python3 scripts/audio_quality/audit.py extract \
+    --files reports/sample_files.txt --out reports/sample_features.csv --workers 8
+
+# decide using per-reciter baselines
+python3 scripts/audio_quality/audit.py decide \
+    --features reports/sample_features.csv --outdir reports/sample1
+
+# held-out: build baselines on a reference set, apply to new files
+python3 scripts/audio_quality/audit.py decide \
+    --features reports/sample2_features.csv \
+    --baseline-features reports/sample1_features.csv --outdir reports/sample2
+```
+
+## Calibration
+
+Parameter values in `scripts/audio_quality/audit.py` (`CONFIG`) are starting
+points. They are tuned with a human-in-the-loop loop (Section 11 of the v2 spec):
+listen to the `review` list, compare Keep/Exclude verdicts with the automatic
+decision, adjust one parameter at a time, and validate on disjoint samples until
+agreement is stable. Because uncertainty routes to `review`, a mismatch is cheap.
+
+## Requirements
+
+Python 3 with `numpy`, `soundfile`, `librosa`; `ffmpeg`/`ffprobe` on `PATH`.

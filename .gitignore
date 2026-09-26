@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Audio data is stored outside the repo (see README)
+content/
+*.mp3
+
+# Generated full-run artifacts (keep the committed sample reports)
+/tmp/
+*.tmp

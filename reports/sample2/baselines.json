@@ -1,0 +1,83 @@
+{
+  "Abdul_Basit_Murattal_192kbps": {
+    "snr_db": 20.232388685697504,
+    "spectral_flatness": 0.0197488721460104,
+    "silence_ratio": 0.03333333333333333,
+    "clipping_fraction": 0.0,
+    "dc_offset": -2.163881072192453e-05,
+    "rms_dbfs": -22.327867126073308,
+    "_n": 45
+  },
+  "Abdullah_Basfar_192kbps": {
+    "snr_db": 18.685326451323128,
+    "spectral_flatness": 0.06375756859779358,
+    "silence_ratio": 0.036248752909876954,
+    "clipping_fraction": 0.0,
+    "dc_offset": 1.381341121486912e-07,
+    "rms_dbfs": -21.778569100774835,
+    "_n": 45
+  },
+  "Abu_Bakr_Ash-Shaatree_128kbps": {
+    "snr_db": 9.193547547236307,
+    "spectral_flatness": 0.023281021043658257,
+    "silence_ratio": 0.003221476510067114,
+    "clipping_fraction": 0.0,
+    "dc_offset": -5.141262590768747e-05,
+    "rms_dbfs": -21.09066029508307,
+    "_n": 45
+  },
+  "Hudhaify_128kbps": {
+    "snr_db": 19.79711922492619,
+    "spectral_flatness": 0.010648073628544807,
+    "silence_ratio": 0.048051948051948054,
+    "clipping_fraction": 0.0,
+    "dc_offset": -9.736923090031269e-08,
+    "rms_dbfs": -18.61736609475343,
+    "_n": 45
+  },
+  "Husary_128kbps": {
+    "snr_db": 30.877800943093604,
+    "spectral_flatness": 0.005863937083631754,
+    "silence_ratio": 0.07586206896551724,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.0005219469894655049,
+    "rms_dbfs": -20.89705183102798,
+    "_n": 45
+  },
+  "Minshawy_Murattal_128kbps": {
+    "snr_db": 19.353160557007712,
+    "spectral_flatness": 0.015430371277034283,
+    "silence_ratio": 0.04299889746416759,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.00018765534332487732,
+    "rms_dbfs": -18.485644311710168,
+    "_n": 45
+  },
+  "Muhammad_Ayyoub_128kbps": {
+    "snr_db": 11.484225405203418,
+    "spectral_flatness": 0.01915544830262661,
+    "silence_ratio": 0.012392969806219017,
+    "clipping_fraction": 0.0,
+    "dc_offset": -0.0008715745061635971,
+    "rms_dbfs": -15.789143498365949,
+    "_n": 45
+  },
+  "Yaser_Salamah_128kbps": {
+    "snr_db": 11.482487603129638,
+    "spectral_flatness": 0.0019013892160728574,
+    "silence_ratio": 0.01771274547554871,
+    "clipping_fraction": 0.0,
+    "dc_offset": -0.0010789711959660053,
+    "rms_dbfs": -17.42332610903716,
+    "_n": 45
+  },
+  "aziz_alili_128kbps": {
+    "snr_db": 8.682409458051678,
+    "spectral_flatness": 0.03108685463666916,
+    "silence_ratio": 0.0037418147801683817,
+    "clipping_fraction": 0.0,
+    "dc_offset": 0.00017452359315939248,
+    "rms_dbfs": -13.652839481589034,
+    "_n": 45
+  }
+}
