@@ -273,24 +273,27 @@ def write_outputs(decisions, base, outdir, cfg):
 
 
 def cmd_extract(args):
-    from features import extract_many, FEATURE_COLUMNS
+    from features import extract, FEATURE_COLUMNS
+    from concurrent.futures import ProcessPoolExecutor
     with open(args.files) as f:
         paths = [ln.strip() for ln in f if ln.strip()]
     print("extracting %d files with %d workers" % (len(paths), args.workers), flush=True)
-
-    def prog(i, total):
-        if i % 25 == 0 or i == total:
-            print("  %d/%d" % (i, total), flush=True)
-
-    rows = extract_many(paths, workers=args.workers, progress=prog)
     cols = ["path", "rel_path", "reciter", "surah", "ayah", "error", "spectral_error",
             "decode_backend"] + FEATURE_COLUMNS
+    done = 0
     with open(args.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
         w.writeheader()
-        for r in rows:
-            w.writerow(r)
-    print("wrote", args.out)
+        f.flush()
+        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+            for r in ex.map(extract, paths, chunksize=8):
+                w.writerow(r)
+                done += 1
+                if done % 200 == 0:
+                    f.flush()
+                    print("  %d/%d" % (done, len(paths)), flush=True)
+        f.flush()
+    print("wrote", args.out, "(%d rows)" % done)
 
 
 def cmd_decide(args):
