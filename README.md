@@ -33,6 +33,10 @@ Abdullah_Basfar_192kbps
 quran_ayah_filtering_specs.md            text-level exclusion rules
 quran_text/
   quran-simple.txt                       verse text (surah|ayah|text)
+  quran-uthmani.txt                      verse text, Uthmani script (surah|ayah|text)
+  quran-simple.json                      verse text keyed by SSSAAA, each ending with ۝
+  quran-uthmani.json                     Uthmani text keyed by SSSAAA, each ending with ۝
+  NOTICE-tanzil.txt                      required Tanzil copyright notice
   audio_quality_audit_review.md          review of the first audio spec (why v1 was replaced)
   audio_quality_audit_specs_v2_en.md     current audio quality spec
 scripts/audio_quality/
@@ -41,8 +45,34 @@ scripts/audio_quality/
   make_sample.py                         balanced ayah x reciter sampler
   assemble_and_upload.py                 build filtered tree + upload to GCS
   README.md                              pipeline usage
+scripts/quran_text/
+  build_quran_json.py                    Tanzil .txt -> SSSAAA-keyed JSON
 reports/                                 sample runs (features, decisions, baselines, summaries)
 ```
+
+## Text data (JSON keyed like the audio)
+
+The audio lives at `<reciter>/SSSAAA.mp3` (zero-padded 3-digit surah + 3-digit
+ayah). `quran_text/quran-simple.json` and `quran_text/quran-uthmani.json` use the
+same keys, so text and audio align by filename. Every ayah text ends with the
+Arabic End of Ayah sign (U+06DD, ۝):
+
+```json
+{
+  "001001": "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ۝",
+  "001002": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ۝"
+}
+```
+
+Both files have 6,236 entries and match all 6,236 `SSSAAA.mp3` stems of every
+reciter 1:1. Regenerate with:
+
+```bash
+python3 scripts/quran_text/build_quran_json.py --all
+```
+
+The Quran text is from the [Tanzil Project](https://tanzil.net) (CC BY 3.0); see
+`quran_text/NOTICE-tanzil.txt`.
 
 ## Output & upload destination
 

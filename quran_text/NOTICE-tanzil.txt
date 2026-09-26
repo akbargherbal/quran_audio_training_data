@@ -1,0 +1,41 @@
+Tanzil Quran Text - Copyright Notice
+=====================================
+
+The files quran_text/quran-simple.txt, quran_text/quran-uthmani.txt and the
+derived quran_text/quran-simple.json and quran_text/quran-uthmani.json are
+produced by the Tanzil Project.
+
+# PLEASE DO NOT REMOVE OR CHANGE THIS COPYRIGHT BLOCK
+#====================================================================
+#
+#  Tanzil Quran Text (Simple, Version 1.1)
+#  Copyright (C) 2007-2026 Tanzil Project
+#  License: Creative Commons Attribution 3.0
+#
+#  This copy of the Quran text is carefully produced, highly
+#  verified and continuously monitored by a group of specialists
+#  at Tanzil Project.
+#
+#  TERMS OF USE:
+#
+#  - Permission is granted to copy and distribute verbatim copies
+#    of this text, but CHANGING IT IS NOT ALLOWED.
+#
+#  - This Quran text can be used in any website or application,
+#    provided that its source (Tanzil Project) is clearly indicated,
+#    and a link is made to tanzil.net to enable users to keep
+#    track of changes.
+#
+#  - This copyright notice shall be included in all verbatim copies
+#    of the text, and shall be reproduced appropriately in all files
+#    derived from or containing substantial portion of this text.
+#
+#  Please check updates at: http://tanzil.net/updates/
+#
+#====================================================================
+
+The Uthmani edition is the same notice with "(Uthmani, Version 1.1)".
+
+Note: the JSON files are a change of *encoding/format* only (TSV lines ->
+SSSAAA-keyed JSON). The Quran text itself is unchanged, except that an
+Arabic End of Ayah sign (U+06DD, ۝) is appended to mark the end of each ayah.
