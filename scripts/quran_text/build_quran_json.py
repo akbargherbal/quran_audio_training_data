@@ -7,7 +7,8 @@ exactly those keys, so text and audio align by filename:
 
     {"001001": "<ayah text> ۝", "001002": "...", ...}
 
-The Arabic End of Ayah sign (U+06DD, ۝) is appended to every ayah.
+The Arabic End of Ayah sign (U+06DD, ۝), preceded by a space, is appended to
+every ayah.
 
 Input format (Tanzil):
     SSS|AAA|text
@@ -31,6 +32,7 @@ import re
 import sys
 
 AYAH_END = "\u06dd"  # ۝ ARABIC END OF AYAH
+AYAH_SUFFIX = " " + AYAH_END  # space-separated from the last word
 LINE_RE = re.compile(r"^(\d{1,3})\|(\d{1,3})\|(.*)$")
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
@@ -61,7 +63,7 @@ def parse(path: str) -> dict:
             if key in ayat:
                 sys.exit("%s:%d: duplicate key %s" % (path, lineno, key))
             if not text.endswith(AYAH_END):
-                text += AYAH_END
+                text += AYAH_SUFFIX
             ayat[key] = text
     return ayat
 

@@ -54,13 +54,13 @@ reports/                                 sample runs (features, decisions, basel
 
 The audio lives at `<reciter>/SSSAAA.mp3` (zero-padded 3-digit surah + 3-digit
 ayah). `quran_text/quran-simple.json` and `quran_text/quran-uthmani.json` use the
-same keys, so text and audio align by filename. Every ayah text ends with the
-Arabic End of Ayah sign (U+06DD, ۝):
+same keys, so text and audio align by filename. Every ayah text ends with a
+space followed by the Arabic End of Ayah sign (U+06DD, ۝):
 
 ```json
 {
-  "001001": "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ۝",
-  "001002": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ۝"
+  "001001": "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ ۝",
+  "001002": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝"
 }
 ```
 
