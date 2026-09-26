@@ -228,9 +228,22 @@ For the full run, list all main `.mp3` files (excluding `extras/`), extract once
 (features are cacheable), build baselines, then apply. Full extraction is the
 expensive step (~7 files/s at 8 workers in this environment).
 
+Audio is never committed to git. Assemble the filtered tree and upload it to the
+bucket at the end:
+
+```bash
+python3 scripts/audio_quality/assemble_and_upload.py \
+    --decisions reports/all/decisions.jsonl --include accepted,review \
+    --reports reports/all --stage /content/quran_filtered_stage --upload
+# -> gs://sheikh-fitzgerald-backup/ARABIC_DATA/Quran_Filtered_Audio_Data/
+```
+
 ## 14. Out of Scope
 
 - Text-level filtering (surah openers, <5-word ayat, exact-duplicate bias).
 - `extras/` (bismillah and `000` surah opener files).
 - Loudness normalization for training (recommended as a separate, reversible
   preprocessing step; **not** a quality criterion here).
+- Audio storage. Filtered audio is uploaded to
+  `gs://sheikh-fitzgerald-backup/ARABIC_DATA/Quran_Filtered_Audio_Data/`
+  and is **never** committed to GitHub.
